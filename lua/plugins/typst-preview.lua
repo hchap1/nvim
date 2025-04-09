@@ -1,6 +1,7 @@
 return {
     'chomosuke/typst-preview.nvim',
-    lazy = false,
-    version = '0.3.*',
-    build = function() require 'typst-preview'.update() end,
+	ft = "typst",
+	opts = {
+		open_cmd = "firefox %s -P typst-preview --class typst-preview"
+	}
   }

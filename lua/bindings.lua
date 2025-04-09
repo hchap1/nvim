@@ -1,5 +1,6 @@
 -- Key mappings
 vim.api.nvim_set_keymap('n', '`<CR>', ':wincmd w<CR>', { noremap = true, silent = false })
+vim.api.nvim_set_keymap('n', '<ESC>', ':nohlsearch<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '``', ':TypstPreviewStop<CR> :TypstPreview<CR>', { noremap = true, silent = false })
 vim.api.nvim_set_keymap('n', '<CR>b', ':bn<CR>', { noremap = true, silent = false })
 vim.api.nvim_set_keymap('n', '<F5>', '<cmd>lua ' ..

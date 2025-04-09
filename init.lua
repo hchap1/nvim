@@ -25,5 +25,5 @@ require("lazy").setup({
 require("settings")
 require("bindings")
 
--- vim.cmd("colorscheme onedark")
+-- vim.cmd("colorscheme gruvbox")
 vim.cmd("colorscheme tokyonight")

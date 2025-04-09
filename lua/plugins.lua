@@ -6,6 +6,7 @@ return {
     require("plugins.tundra"),
     require("plugins.treesitter"),
     require("plugins.screenkey"),
+	require("plugins.noice"),
     require("plugins.barbar"),
     -- Removed until illegal character patch: require("plugins.lualine"),
 	require("plugins.galaxyline"), -- Lualine alternative
@@ -16,5 +17,6 @@ return {
     require("plugins.transparent"),
     require("plugins.autopair"),
     require("plugins.notify"),
-    require("plugins.hover")
+    require("plugins.hover"),
+	require("plugins.gruvbox")
 }
