@@ -7,19 +7,16 @@ vim.cmd("map <leader>fs :Telescope spell_suggest<CR>")
 vim.cmd("map <leader>fr :Telescope lsp_references<CR>")
 
 -- Clear Search
-vim.cmd("map <ESC> :nohlsearch<CR>")
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true })
 
 -- Close Buffer
-vim.cmd("map <leader>d :bd<CR>")
+vim.keymap.set("n", "<leader>d", ":bd<CR>", { silent = true })
 
-
--- Setup keymaps
 vim.keymap.set(
-	"n", "K", function() require("hover").hover() end, {desc = "hover.nvim"}
-)
+	"n", "gK", function() require("hover").hover_select() end, {
+	silent = true, desc = "hover.nvim (select)"
+})
 vim.keymap.set(
-	"n", "gK", function() require("hover").hover_select() end, {desc = "hover.nvim (select)"}
-)
-vim.keymap.set(
-	"n", "K", function() require("hover").hover_switch("previous") end, {desc = "hover.nvim (previous source)"}
-)
+	"n", "K", function() require("hover").hover_switch("previous") end, {
+	silent = true,desc = "hover.nvim (previous source)"
+})
