@@ -3,8 +3,8 @@ return {
   version = "*",
   config = function()
     require("toggleterm").setup{
-      direction = "floating",
-      open_mapping = "<leader>t",
+      direction = "float",
+      open_mapping = "T",
       shade_terminals = true,
       start_in_insert = true,
       persist_size = true,
