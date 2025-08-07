@@ -6,6 +6,11 @@ vim.cmd("map <leader>fg :Telescope live_grep<CR>")
 vim.cmd("map <leader>fs :Telescope spell_suggest<CR>")
 vim.cmd("map <leader>fr :Telescope lsp_references<CR>")
 
+-- Open ToggleTerm
+vim.keymap.set("n", "<leader>t", ":ToggleTerm<CR>", {
+	silent = true, desc = "toggleterm"
+})
+
 -- Clear Search
 vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true })
 
