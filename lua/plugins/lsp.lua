@@ -2,7 +2,7 @@ local ensure_installed = {
 	"rust_analyzer",
 	"lua_ls",
 	"tinymist",
-	"pyright",
+	"basedpyright",
 }
 
 local default_server_opts = {
@@ -55,6 +55,14 @@ return {
 						"rust_analyzer",
 					},
 				},
+			})
+
+			require("mason-lspconfig").setup_handlers({
+			  function(server_name)
+				if server_name ~= "rust_analyzer" then
+				  lspconfig[server_name].setup(default_server_opts)
+				end
+			  end,
 			})
 		end
 	}

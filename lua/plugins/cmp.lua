@@ -17,7 +17,11 @@ return {
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			"disrupted/blink-cmp-conventional-commits",
+
+			-- nvim-cmp sources
 			"hrsh7th/cmp-calc",
+
+			-- appearance
 			"nvim-tree/nvim-web-devicons",
 			"onsails/lspkind.nvim",
 		},
