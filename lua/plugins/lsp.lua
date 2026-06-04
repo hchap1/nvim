@@ -1,33 +1,42 @@
-local ensure_installed = {
-	"rust_analyzer",
+local desired = {
+	-- Rustaceanvim does rust_analyzer
 	"lua_ls",
 	"tinymist",
-	"basedpyright",
+	"nil_ls",
+	"sqls",
+	"ty",
 }
 
-local default_server_opts = {
-
-}
+local IS_NIX = vim.env["NIX_USER_PROFILE_DIR"] ~= nil
+local ensure_installed = IS_NIX and {} or desired
+vim.lsp.enable(desired)
 
 return {
 	{
-		"williamboman/mason.nvim",
-		opts = {}
+		"mason-org/mason.nvim",
+		enabled = not IS_NIX,
+		opts = {},
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		enabled = not IS_NIX,
+		opts = {
+			ensure_installed = ensure_installed,
+			automatic_enable = false,
+		},
 	},
 	{
 		"neovim/nvim-lspconfig",
 		cmd = { "LspInfo", "LspInstall","LspStart" },
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
 		},
 		init = function()
 			vim.opt.signcolumn = "yes"
 		end,
 		config = function()
-			local lspconfig = require("lspconfig")
-
 			-- Stuff that only works when there is an active LSP
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
@@ -46,23 +55,6 @@ return {
 					vim.keymap.set({'n', 'x'}, '<F3>', function() vim.lsp.buf.format({async = true}) end, opts)
 					vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
 				end
-			})
-
-			require("mason-lspconfig").setup({
-				ensure_installed = ensure_installed,
-				automatic_enable = {
-					exclude = {
-						"rust_analyzer",
-					},
-				},
-			})
-
-			require("mason-lspconfig").setup_handlers({
-			  function(server_name)
-				if server_name ~= "rust_analyzer" then
-				  lspconfig[server_name].setup(default_server_opts)
-				end
-			  end,
 			})
 		end
 	}
